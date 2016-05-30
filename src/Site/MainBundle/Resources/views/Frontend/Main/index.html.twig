@@ -1,0 +1,144 @@
+{% extends 'SiteMainBundle:Frontend:layout.html.twig' %}
+
+{% block html %}ng-app="calendar"{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/sitemain/frontend/js/angular.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/sitemain/frontend/js/calendar.js') }}"></script>
+    <script type="text/javascript">
+        window.calendar = {{ render(url("frontend_json")) }};
+        window.couchs = {{ render(url("frontend_json_couchs")) }};
+        window.groups = {{ render(url("frontend_json_groups")) }};
+    </script>
+{% endblock %}
+
+{% block body %}
+    {#<div class="buttons">#}
+        {#<div class="button-today">Сегодня</div>#}
+        {#<div class="button-left">#}
+            {#<i class="fa fa-angle-double-left"></i>#}
+        {#</div>#}
+        {#<div class="button-right">#}
+            {#<i class="fa fa-angle-double-right"></i>#}
+        {#</div>#}
+    {#</div>#}
+    
+    {#<div class="filter">#}
+        {#<select name="group" id="group">#}
+            {#<option ng-repeat="group in groups">{[{ group.name }]}</option>#}
+        {#</select>#}
+        {#<select name="couch" id="couch">#}
+            {#<option value="{[{ couch.id }]}" ng-repeat="couch in couchs">{[{ couch.name }]}</option>#}
+        {#</select>#}
+    {#</div>#}
+    <div class="content hide" ng-controller="CalendarController">
+        <label for="type">Тип тренировки</label>
+        <select name="type" id="type" ng-model="typeTraining" ng-change="typeChange()">
+            {% for typeTraining in typeTrainings %}
+                <option value="{{ typeTraining.id }}">{{ typeTraining.name }}</option>
+            {% endfor %}
+        </select>
+
+        <table class="table">
+            <thead>
+            <th class="timeth"></th>
+            <th class="weekdays" ng-repeat="day in days">
+                <div class="weekday">{[{ day }]}</div>
+                <div class="date"></div>
+            </th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="(keyTime, times) in calendar">
+                <td class="hour">{[{ times.name }]}:00</td>
+                <td ng-repeat="time in times">
+                    <div class="event-wrap" ng-repeat="training in time">
+                        <div id="event{[{ training.id }]}" ng-show="training.enable" class="event event{[{ training.typeTraining.id }]}" style="background-color: {[{ training.typeTraining.color }]};" ng-show="training.visible == true" ng-click="eventClick($event, training.id, training)">
+                            <table style="width: 100%;">
+                                <tbody>
+                                <tr style="font-size: 13px;">
+                                    <td style="width: 50%" align="left">
+                                        {[{ training.time }]}
+                                    </td>
+                                    <td style="width: 50%; color: rgba(0,0,0,.5)" align="right">
+                                        {[{ training.duration }]}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table>
+                                <tbody>
+                                <tr style="font-size: 13px;">
+                                    <td align="left">
+                                        <div class="event-content" style="text-overflow: ellipsis; overflow: hidden">
+                                            {[{ training.group.name }]}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr style="font-size: 11px; color: rgba(0,0,0,.5)">
+                                    <td align="left">
+                                        <span>{[{ training.couch.name }]}</span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- Tooltip -->
+        <div class="tooltip">
+            <span class="angle" style="left: 109px;"></span>
+
+            <div class="tooltip_wrap">
+                <span class="close" ng-click="eventClose()">×</span>
+
+                <div class="title">{[{ currentTraining.group.name }]}</div>
+
+                <div class="trainer" ng-show="currentTraining.couch">
+                    <strong>Тренер:</strong>
+
+                    <span>{[{ currentTraining.couch.name }]}</span>
+                </div>
+
+                <div class="trainer"><strong>Начало:</strong> {[{ currentTraining.time }]}</div>
+
+                <div class="trainer"><strong>Длительность:</strong> {[{ currentTraining.duration }]}</div>
+                <div class="tooltip__tabs">
+                    <div class="tooltip__tabs__item enable active" data-rel="info" ng-click="tabChange($event)">
+                        <a href="">О занятии</a>
+                    </div>
+                    <div class="tooltip__tabs__item enable" data-rel="instructor" ng-click="tabChange($event)">
+                        <a href="" class="ng-binding">О тренере</a>
+                    </div>
+                </div>
+                <div style="padding-bottom: 10px"></div>
+                <div class="tooltip__tab__content enable" id="info" style="display: block;" ng-bind-html-unsafe="currentTraining.group.description">
+                </div>
+                <div class="tooltip__tab__content enable" id="instructor" style="display: none;">
+                    <div class="wrap-img" ng-show="currentTraining.couch.photo">
+                        <div style="text-align: center">
+                            <strong>{[{ currentTraining.couch.name }]}</strong>
+                        </div>
+                        <img src="{[{ currentTraining.couch.photo }]}" alt=""/>
+                    </div>
+                    <div ng-bind-html-unsafe="currentTraining.couch.description">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end Tooltip -->
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}

@@ -1,0 +1,11 @@
+backend_dashboard:
+    path:     /
+    defaults: { _controller: "SiteMainBundle:Backend/Dashboard:index" }
+
+backend_settings:
+    resource: "@SiteMainBundle/Resources/config/routing/backend/settings.yml"
+    prefix:   /settings
+
+backend_page:
+    resource: "@SiteMainBundle/Resources/config/routing/backend/page.yml"
+    prefix:   /page

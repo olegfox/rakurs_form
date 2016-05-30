@@ -1,0 +1,19 @@
+frontend_homepage:
+    path:     /
+    defaults: { _controller: "SiteMainBundle:Frontend/Main:index" }
+
+frontend_json:
+    path:     /json
+    defaults: { _controller: "SiteMainBundle:Frontend/Main:json" }
+
+frontend_json_couchs:
+    path:     /json/couchs
+    defaults: { _controller: "SiteMainBundle:Frontend/Main:jsonCouchs" }
+
+frontend_json_groups:
+    path:     /json/groups
+    defaults: { _controller: "SiteMainBundle:Frontend/Main:jsonGroups" }
+
+frontend_json_type_training:
+    path:     /json/type_training
+    defaults: { _controller: "SiteMainBundle:Frontend/Main:jsonTypeTraining" }

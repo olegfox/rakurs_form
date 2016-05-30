@@ -1,0 +1,71 @@
+backend:
+    settings:
+        h1_show: Настройки
+        h1_list: Список настроек
+        h1_edit: Редактирование
+        h1_create: Добавление нового значения
+        back_to_list: Назад к списку настроек
+        empty_list: Нет настроек
+        key: Ключ
+        value: Значение
+        not_found: Не найдено
+
+    page:
+        h1_show: Страница
+        h1_list: Список страниц
+        h1_edit: Редактирование страницы
+        h1_create: Создание страницы
+        back_to_list: Назад к списку страниц
+        empty_list: Нет страниц
+        title: Заголовок
+        metatitle: Мета-заголовок
+        metadescription: Мета-описание
+        metakeywords: Ключевые слова
+        text: Текст страницы
+        textBottom: Текст внизу страницы
+        position: Позиция в меню
+        parent: Родитель
+        not_found: Страница не существует
+        validation:
+            title: Вы не ввели заголовок!
+            position: Вы не ввели позицию!
+            position_integer: Вы некорректно ввели позицию!
+            position_min: Позициия не может быть меньше нуля!
+
+    actions: Действия
+    show: показать
+    edit: редактировать
+    update: сохранить
+    create: создать
+    delete: удалить
+
+frontend:
+    register: Перейти к оплате
+    payment:
+      tariff: Тариф
+      numberMonth: Количество месяцев
+      next: Далее
+      back: Назад
+      send: Оплатить
+      error: Ошибка!
+    feedback:
+        placeholder:
+            name: Имя
+            phone: Телефон
+            email: Электронная почта
+            theme: Тема письма
+            message: Сообщение
+    question_form:
+        placeholder:
+            name: Имя
+            email: Электронная почта
+            question: Вопрос
+        button_question: Задать вопрос
+        button_question_send: Отправить
+    change_password_form:
+        current_password: Текущий пароль
+        new_password: Новый пароль
+        new_password_confirmation: Подтвердите пароль
+        password_mismatch: Введенные пароли не совпадают
+
+"Invalid credentials.": Неверные имя пользователя или пароль

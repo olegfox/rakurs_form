@@ -1,0 +1,8 @@
+Site\MainBundle\Entity\Settings:
+    properties:
+        key:
+            - NotBlank:
+                message: "Ключ не может быть пустым"
+        value:
+            - NotBlank:
+                message: "Значение не может быть пустым"
