@@ -32,6 +32,45 @@ backend:
             position_integer: Вы некорректно ввели позицию!
             position_min: Позициия не может быть меньше нуля!
 
+    hotel:
+        h1_show: Отель
+        h1_list: Список отелей
+        h1_edit: Редактирование отеля
+        h1_create: Добавление отеля
+        back_to_list: Назад к списку отелей
+        empty_list: Нет отелей
+        name: Название отеля
+        position: Позиция
+        not_found: Отель не существует
+        validation:
+            title: Вы не ввели название отеля!
+
+    stations:
+        h1_show: Вокзал
+        h1_list: Список вокзалов
+        h1_edit: Редактирование вокзала
+        h1_create: Добавление вокзала
+        back_to_list: Назад к списку вокзалов
+        empty_list: Нет вокзалов
+        name: Название вокзала
+        position: Позиция
+        not_found: Вокзала не существует
+        validation:
+            title: Вы не ввели название вокзала!          
+
+    class_room:
+        h1_show: Класс номера
+        h1_list: Список классов
+        h1_edit: Редактирование класса
+        h1_create: Добавление класса
+        back_to_list: Назад к списку классов
+        empty_list: Нет классов
+        name: Название класса
+        position: Позиция
+        not_found: Класса не существует
+        validation:
+            title: Вы не ввели название класса!                 
+
     actions: Действия
     show: показать
     edit: редактировать

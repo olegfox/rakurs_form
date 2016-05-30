@@ -15,6 +15,9 @@ class BackendMenuBuilder extends ContainerAware
 
         $menu->addChild('Настройки', array('route' => 'backend_settings_index'));
         $menu->addChild('Страницы', array('route' => 'backend_page_index'));
+        $menu->addChild('Отели', array('route' => 'backend_hotel_index'));
+        $menu->addChild('Классы номеров', array('route' => 'backend_class_room_index'));
+        $menu->addChild('Вокзалы', array('route' => 'backend_stations_index'));
 
         return $menu;
     }

@@ -9,3 +9,15 @@ backend_settings:
 backend_page:
     resource: "@SiteMainBundle/Resources/config/routing/backend/page.yml"
     prefix:   /page
+
+backend_hotel:
+    resource: "@SiteMainBundle/Resources/config/routing/backend/hotel.yml"
+    prefix:   /hotel    
+
+backend_stations:
+    resource: "@SiteMainBundle/Resources/config/routing/backend/stations.yml"
+    prefix:   /stations    
+
+backend_class_room:
+    resource: "@SiteMainBundle/Resources/config/routing/backend/class_room.yml"
+    prefix:   /class_room        

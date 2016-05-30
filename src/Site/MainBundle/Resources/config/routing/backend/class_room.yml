@@ -1,0 +1,30 @@
+backend_class_room_index:
+    path:     /
+    defaults: { _controller: "SiteMainBundle:Backend/ClassRoom:index" }
+
+backend_class_room_show:
+    path:     /{id}/show
+    defaults: { _controller: "SiteMainBundle:Backend/ClassRoom:show" }
+
+backend_class_room_new:
+    path:     /new
+    defaults: { _controller: "SiteMainBundle:Backend/ClassRoom:new" }
+
+backend_class_room_create:
+    path:     /create
+    defaults: { _controller: "SiteMainBundle:Backend/ClassRoom:create" }
+    requirements: { _method: post }
+
+backend_class_room_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SiteMainBundle:Backend/ClassRoom:edit" }
+
+backend_class_room_update:
+    path:     /{id}/update
+    defaults: { _controller: "SiteMainBundle:Backend/ClassRoom:update" }
+    requirements: { _method: post|put }
+
+backend_class_room_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SiteMainBundle:Backend/ClassRoom:delete" }
+    requirements: { _method: post|delete }

@@ -6,3 +6,21 @@ Site\MainBundle\Entity\Settings:
         value:
             - NotBlank:
                 message: "Значение не может быть пустым"
+
+Site\MainBundle\Entity\Hotel:
+    properties:
+        name:
+            - NotBlank:
+                message: "Название отеля не может быть пустым"  
+
+Site\MainBundle\Entity\Stations:
+    properties:
+        name:
+            - NotBlank:
+                message: "Название вокзала не может быть пустым"      
+
+Site\MainBundle\Entity\ClassRoom:
+    properties:
+        name:
+            - NotBlank:
+                message: "Класс номера не может быть пустым"                                                                        

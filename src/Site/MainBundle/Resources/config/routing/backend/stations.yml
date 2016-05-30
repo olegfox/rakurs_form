@@ -1,0 +1,30 @@
+backend_stations_index:
+    path:     /
+    defaults: { _controller: "SiteMainBundle:Backend/Stations:index" }
+
+backend_stations_show:
+    path:     /{id}/show
+    defaults: { _controller: "SiteMainBundle:Backend/Stations:show" }
+
+backend_stations_new:
+    path:     /new
+    defaults: { _controller: "SiteMainBundle:Backend/Stations:new" }
+
+backend_stations_create:
+    path:     /create
+    defaults: { _controller: "SiteMainBundle:Backend/Stations:create" }
+    requirements: { _method: post }
+
+backend_stations_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SiteMainBundle:Backend/Stations:edit" }
+
+backend_stations_update:
+    path:     /{id}/update
+    defaults: { _controller: "SiteMainBundle:Backend/Stations:update" }
+    requirements: { _method: post|put }
+
+backend_stations_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SiteMainBundle:Backend/Stations:delete" }
+    requirements: { _method: post|delete }

@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Hotel
+ * ClassRoom
  *
- * @ORM\Table(name="hotel")
- * @ORM\Entity(repositoryClass="Site\MainBundle\Entity\Repository\HotelRepository")
+ * @ORM\Table(name="class_room")
+ * @ORM\Entity(repositoryClass="Site\MainBundle\Entity\Repository\ClassRoomRepository")
  */
-class Hotel
+class ClassRoom
 {
     /**
      * @var integer
@@ -56,7 +56,7 @@ class Hotel
      * Set name
      *
      * @param string $name
-     * @return Hotel
+     * @return ClassRoom
      */
     public function setName($name)
     {
@@ -79,7 +79,7 @@ class Hotel
      * Set slug
      *
      * @param string $slug
-     * @return Hotel
+     * @return ClassRoom
      */
     public function setSlug($slug)
     {
@@ -102,7 +102,7 @@ class Hotel
      * Set position
      *
      * @param integer $position
-     * @return Hotel
+     * @return ClassRoom
      */
     public function setPosition($position)
     {
