@@ -20,4 +20,4 @@ frontend_json_type_training:
 
 frontend_client:
     resource: "@SiteMainBundle/Resources/config/routing/frontend/client.yml"
-    prefix:   /client
+    prefix:   /

@@ -16,7 +16,18 @@ class AuthController extends Controller
         $entity = new Client();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('SiteMainBundle:Frontend/Client:new.html.twig', array(
+        return $this->render('SiteMainBundle:Frontend/Main:registration14.html.twig', array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        ));
+    }
+
+    public function registration15Action()
+    {
+        $entity = new Client();
+        $form   = $this->createCreateForm($entity);
+
+        return $this->render('SiteMainBundle:Frontend/Main:registration15.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));

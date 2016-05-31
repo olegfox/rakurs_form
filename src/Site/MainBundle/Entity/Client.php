@@ -110,6 +110,15 @@ class Client
     protected $registerDate;
 
     /**
+     * С кем из сотрудников компании «Ракурс» вы бы хотели пообщаться в ходе конференции
+     *
+     * @var string
+     *
+     * @ORM\Column(name="friends", type="string", length=1024, nullable=false)
+     */
+    private $friends;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -347,5 +356,28 @@ class Client
     public function getStation()
     {
         return $this->station;
+    }
+
+    /**
+     * Set friends
+     *
+     * @param string $friends
+     * @return Client
+     */
+    public function setFriends($friends)
+    {
+        $this->friends = $friends;
+
+        return $this;
+    }
+
+    /**
+     * Get friends
+     *
+     * @return string 
+     */
+    public function getFriends()
+    {
+        return $this->friends;
     }
 }

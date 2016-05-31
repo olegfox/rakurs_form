@@ -7,16 +7,16 @@
         <table class="records_list table table-striped table-bordered">
             <thead>
             <tr>
-                <th>{{ 'backend.client.name'|trans({}, 'menu') }}</th>
-                <th>{{ 'backend.client.position'|trans({}, 'menu') }}</th>
+                <th>{{ 'backend.client.fio'|trans({}, 'menu') }}</th>
+                <th>{{ 'backend.client.email'|trans({}, 'menu') }}</th>
                 <th>{{ 'backend.actions'|trans({}, 'menu') }}</th>
             </tr>
             </thead>
             <tbody>
             {% for entity in entities %}
                 <tr>
-                    <td><a href="{{ path('backend_client_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
-                    <td>{{ entity.position }}</td>
+                    <td><a href="{{ path('backend_client_show', { 'id': entity.id }) }}">{{ entity.fio }}</a></td>
+                    <td>{{ entity.email }}</td>
                     <td>
                         <ul class="nav nav-pills">
                             <li>

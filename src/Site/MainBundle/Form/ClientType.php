@@ -71,6 +71,10 @@ class ClientType extends AbstractType
                         ->orderBy('s.position', 'ASC');
                 }
             ))
+            ->add('friends', 'textarea', array(
+                'required' => true,
+                'label' => 'backend.client.friends'
+            ))
         ;
     }
     

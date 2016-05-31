@@ -8,9 +8,13 @@
     <table class="record_properties table table-striped table-bordered">
         <tbody>
         <tr>
-            <th>{{ 'backend.client.name'|trans({}, 'menu') }}</th>
-            <td>{{ entity.name }}</td>
+            <th>{{ 'backend.client.fio'|trans({}, 'menu') }}</th>
+            <td>{{ entity.fio }}</td>
         </tr>
+        <tr>
+            <th>{{ 'backend.client.email'|trans({}, 'menu') }}</th>
+            <td>{{ entity.email }}</td>
+        </tr>        
         </tbody>
     </table>
 
