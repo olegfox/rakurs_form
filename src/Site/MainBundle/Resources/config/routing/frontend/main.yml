@@ -17,3 +17,7 @@ frontend_json_groups:
 frontend_json_type_training:
     path:     /json/type_training
     defaults: { _controller: "SiteMainBundle:Frontend/Main:jsonTypeTraining" }
+
+frontend_client:
+    resource: "@SiteMainBundle/Resources/config/routing/frontend/client.yml"
+    prefix:   /client

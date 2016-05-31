@@ -45,6 +45,25 @@ backend:
         validation:
             title: Вы не ввели название отеля!
 
+    client:
+        h1_show: Регистрация
+        h1_list: Список регистраций
+        h1_edit: Редактирование
+        h1_create: Добавление
+        back_to_list: Назад к списку
+        empty_list: Пусто
+        fio: ФИО
+        company: Компания
+        email: Email
+        hotel: Отель
+        classRoom: Класс номера
+        meet: Нужно ли встретить?
+        transport: Транспорт
+        station: Вокзал
+        time: Время прибытия
+        registerDate: День регистрации
+        not_found: Нет такой регистрации
+
     stations:
         h1_show: Вокзал
         h1_list: Список вокзалов

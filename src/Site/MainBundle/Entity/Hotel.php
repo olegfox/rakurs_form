@@ -43,6 +43,11 @@ class Hotel
     private $position;
 
     /**
+     * @ORM\OneToMany(targetEntity="Client", mappedBy="hotel", cascade={"persist", "remove"})
+     **/
+    protected $clients;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -119,5 +124,50 @@ class Hotel
     public function getPosition()
     {
         return $this->position;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->clients = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add clients
+     *
+     * @param \Site\MainBundle\Entity\Client $clients
+     * @return Hotel
+     */
+    public function addClient(\Site\MainBundle\Entity\Client $clients)
+    {
+        $this->clients[] = $clients;
+
+        return $this;
+    }
+
+    /**
+     * Remove clients
+     *
+     * @param \Site\MainBundle\Entity\Client $clients
+     */
+    public function removeClient(\Site\MainBundle\Entity\Client $clients)
+    {
+        $this->clients->removeElement($clients);
+    }
+
+    /**
+     * Get clients
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getClients()
+    {
+        return $this->clients;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

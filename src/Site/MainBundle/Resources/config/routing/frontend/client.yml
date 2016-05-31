@@ -1,0 +1,8 @@
+frontend_registration14:
+    path:     /registration14
+    defaults: { _controller: "SiteMainBundle:Frontend/Auth:registration14" }
+
+frontend_client_create:
+    path:     /create
+    defaults: { _controller: "SiteMainBundle:Frontend/Client:create" }
+    requirements: { _method: post }

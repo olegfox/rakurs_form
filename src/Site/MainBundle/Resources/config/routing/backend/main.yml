@@ -20,4 +20,8 @@ backend_stations:
 
 backend_class_room:
     resource: "@SiteMainBundle/Resources/config/routing/backend/class_room.yml"
-    prefix:   /class_room        
+    prefix:   /class_room
+
+backend_client:
+    resource: "@SiteMainBundle/Resources/config/routing/backend/client.yml"
+    prefix:   /client

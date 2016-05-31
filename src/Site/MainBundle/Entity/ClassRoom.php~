@@ -43,6 +43,11 @@ class ClassRoom
     private $position;
 
     /**
+     * @ORM\OneToMany(targetEntity="Client", mappedBy="classRoom", cascade={"persist", "remove"})
+     **/
+    protected $clients;
+
+    /**
      * Get id
      *
      * @return integer 

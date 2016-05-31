@@ -43,6 +43,11 @@ class Stations
     private $position;
 
     /**
+     * @ORM\OneToMany(targetEntity="Client", mappedBy="station", cascade={"persist", "remove"})
+     **/
+    protected $clients;
+
+    /**
      * Get id
      *
      * @return integer 

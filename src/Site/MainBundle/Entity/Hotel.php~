@@ -41,4 +41,88 @@ class Hotel
      * @ORM\Column(name="position", type="integer", nullable=true)
      */
     private $position;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Client", mappedBy="hotel", cascade={"persist", "remove"})
+     **/
+    protected $clients;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Hotel
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Hotel
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set position
+     *
+     * @param integer $position
+     * @return Hotel
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return integer 
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
 }
