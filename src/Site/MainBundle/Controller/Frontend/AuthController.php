@@ -13,12 +13,19 @@ class AuthController extends Controller
 {
     public function registration14Action()
     {
+        $repository = $this->getDoctrine()->getRepository('SiteMainBundle:Page');
+
+        $page = $repository->findOneBySlug('rieghistratsiia14');
+
         $entity = new Client();
         $form   = $this->createCreateForm($entity);
+
+        $form->remove('friends');
 
         return $this->render('SiteMainBundle:Frontend/Main:registration14.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
+            'page' => $page
         ));
     }
 
@@ -26,6 +33,9 @@ class AuthController extends Controller
     {
         $entity = new Client();
         $form   = $this->createCreateForm($entity);
+
+        $form->remove('transport');
+        $form->remove('time');
 
         return $this->render('SiteMainBundle:Frontend/Main:registration15.html.twig', array(
             'entity' => $entity,

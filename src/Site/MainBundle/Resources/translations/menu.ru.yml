@@ -25,6 +25,7 @@ backend:
         textBottom: Текст внизу страницы
         position: Позиция в меню
         parent: Родитель
+        slug: url
         not_found: Страница не существует
         validation:
             title: Вы не ввели заголовок!

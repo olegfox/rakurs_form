@@ -5,7 +5,7 @@ angular.element(document).ready(function () {
 });
 
 angular.
-    module("registration14", []).config(function($interpolateProvider){
+    module("registration15", []).config(function($interpolateProvider){
         $interpolateProvider.startSymbol("{[{").endSymbol("}]}");
     })
     .controller("RegistrationController", function ($scope, $http) {
