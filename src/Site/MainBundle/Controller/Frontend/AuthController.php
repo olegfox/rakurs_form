@@ -20,6 +20,12 @@ class AuthController extends Controller
         $entity = new Client();
         $form   = $this->createCreateForm($entity);
 
+        $form->add('submit', 'submit', array(
+            'label' => 'регистрация',
+            'attr' => array(
+                'class' => 'btn btn-default btn-lg'         
+            )
+        ));
         $form->remove('friends');
 
         return $this->render('SiteMainBundle:Frontend/Main:registration14.html.twig', array(
