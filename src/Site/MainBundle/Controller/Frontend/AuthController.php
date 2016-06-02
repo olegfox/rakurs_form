@@ -11,14 +11,22 @@ use Site\MainBundle\Form\ClientType;
 
 class AuthController extends Controller
 {
-    public function registration14Action()
+    public function registrationAction($register_date)
     {
         $repository = $this->getDoctrine()->getRepository('SiteMainBundle:Page');
+        $repository_settings = $this->getDoctrine()->getRepository('SiteMainBundle:Settings');
 
-        $page = $repository->findOneBySlug('rieghistratsiia14');
+        $page = $repository->findOneBySlug('rieghistratsiia' . $register_date);
+        $buklet = $repository->findOneBySlug('bukliet-uchastnika');
+        $email = $repository_settings->findOneByKey('email');
+
+        if ($email)
+        {
+            $email = $email->getValue();
+        }
 
         $entity = new Client();
-        $form   = $this->createCreateForm($entity);
+        $form   = $this->createCreateForm($entity, $register_date);
 
         $form->add('submit', 'submit', array(
             'label' => 'регистрация',
@@ -26,33 +34,33 @@ class AuthController extends Controller
                 'class' => 'btn btn-default btn-lg'         
             )
         ));
-        $form->remove('friends');
 
-        return $this->render('SiteMainBundle:Frontend/Main:registration14.html.twig', array(
+        if ($register_date == '14')
+        {
+            $form->remove('friends');
+        } else {
+            $form->remove('transport');
+            $form->remove('meet');
+            $form->remove('station');
+            $form->remove('time');
+        }
+
+
+        return $this->render('SiteMainBundle:Frontend/Main:registration.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
-            'page' => $page
+            'page' => $page,
+            'buklet' => $buklet,
+            'email' => $email
         ));
     }
 
-    public function registration15Action()
-    {
-        $entity = new Client();
-        $form   = $this->createCreateForm($entity);
-
-        $form->remove('transport');
-        $form->remove('time');
-
-        return $this->render('SiteMainBundle:Frontend/Main:registration15.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
-    }
-
-    private function createCreateForm(Client $entity)
+    private function createCreateForm(Client $entity, $register_date)
     {
         $form = $this->createForm(new ClientType(), $entity, array(
-            'action' => $this->generateUrl('frontend_client_create'),
+            'action' => $this->generateUrl('frontend_client_create', array(
+                'register_date' => $register_date
+            )),
             'method' => 'POST',
         ));
 

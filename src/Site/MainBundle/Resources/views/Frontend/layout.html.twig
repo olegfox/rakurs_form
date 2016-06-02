@@ -1,5 +1,8 @@
 {% extends "::base.html.twig" %}
 
+{% set register_date = app.request.get('register_date') %}
+{% set current_path = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
+
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('bundles/sitemain/frontend/css/bootstrap.css') }}"/>
     <link rel="stylesheet" href="{{ asset('bundles/sitemain/frontend/css/css.css') }}"/>
@@ -10,19 +13,23 @@
 
     <div class="container-fluid">
         <div class="row" id="top-head">
-            <div class="col-xs-12 col-sm-3 col-md-4 logo"><a href="."><img src="{{ asset('bundles/sitemain/frontend/img/logo.png') }}" alt=""></a></div>
-            <div class="col-xs-12 col-sm-9 col-md-8">
-                <div class="wrapper-menu-head">
-                    <ul class="list-menu-head pull-right hover-top">
-                        <li class="menu1"><a href="{{ path('frontend_page_index', {slug: 'rieghistratsiia15'}) }}"><img src="{{ asset('bundles/sitemain/frontend/img/port.png') }}" alt="" class="item1">Регистрация</a></li>
-                        <li class="menu2"><a href="{{ path('frontend_page_index', {slug: 'miesto-proviedieniia'}) }}"><img src="{{ asset('bundles/sitemain/frontend/img/location.png') }}" alt="">Место проведения</a></li>
-                        <li class="menu3"><a href="{{ path('frontend_page_index', {slug: 'proghramma'}) }}"><img src="{{ asset('bundles/sitemain/frontend/img/programm.png') }}" alt="">Программа</a></li>
-                        <li class="menu4"><a href="{{ path('frontend_page_index', {slug: 'bukliet-uchastnika'}) }}"><img src="{{ asset('bundles/sitemain/frontend/img/buklet.png') }}" alt="">Буклет участника</a></li>
-                    </ul>
+            <div class="col-xs-12 col-sm-3 col-md-4 logo"><a href="{{ path('frontend_register_index', {register_date: app.request.get('register_date')}) }}"><img src="{{ asset('bundles/sitemain/frontend/img/logo.png') }}" alt=""></a></div>
+
+            {% if withoutMenu is not defined %}
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    <div class="wrapper-menu-head">
+                        <ul class="list-menu-head pull-right hover-top">
+                            {% set link = path('frontend_register_index', {register_date: register_date}) %}
+                            <li class="menu1{% if link == current_path %} current{% endif %}"><a href="{{ link }}"><img src="{{ asset('bundles/sitemain/frontend/img/port.png') }}" alt="" class="item1"><img src="{{ asset('bundles/sitemain/frontend/img/portH.png') }}" alt="" class="item1 img-hide">Регистрация</a></li>
+                            {% set link = path('frontend_page_index', {register_date: register_date, slug: 'miesto-proviedieniia'}) %}
+                            <li class="menu2{% if link == current_path %} current{% endif %}"><a href="{{ link }}"><img src="{{ asset('bundles/sitemain/frontend/img/location.png') }}" alt=""><img src="{{ asset('bundles/sitemain/frontend/img/locationH.png') }}" class="img-hide" alt="">Место проведения</a></li>
+                            {% set link = path('frontend_page_index', {register_date: register_date, slug: 'proghramma'~register_date }) %}
+                            <li class="menu3{% if link == current_path %} current{% endif %}"><a href="{{ link }}"><img src="{{ asset('bundles/sitemain/frontend/img/programm.png') }}" alt=""><img src="{{ asset('bundles/sitemain/frontend/img/programmH.png') }}" class="img-hide" alt="">Программа</a></li>
+                            <li class="menu4{% if link == current_path %} current{% endif %}"><a href={% if buklet.fileLink|length > 0 %}"{{ buklet.webPath }}" download="" {% else %}"{{ path('frontend_page_index', {register_date: register_date, slug: 'bukliet-uchastnika'}) }}"{% endif %}><img src="{{ asset('bundles/sitemain/frontend/img/buklet.png') }}" alt=""><img src="{{ asset('bundles/sitemain/frontend/img/bukletH.png') }}" class="img-hide" alt="">Буклет участника</a></li>
+                        </ul>
+                    </div>
                 </div>
-
-
-            </div>
+            {% endif %}
         </div>
 
         {% block text %}

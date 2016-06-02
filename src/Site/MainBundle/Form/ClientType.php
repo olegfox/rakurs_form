@@ -18,15 +18,24 @@ class ClientType extends AbstractType
         $builder
             ->add('fio', 'text', array(
                 'required' => true,
-                'label' => 'backend.client.fio'
+                'label' => 'backend.client.fio',
+                'attr' => array(
+                    'ng-model' => 'client.fio'
+                )
             ))
             ->add('company', 'text', array(
                 'required' => true,
-                'label' => 'backend.client.company'
+                'label' => 'backend.client.company',
+                'attr' => array(
+                    'ng-model' => 'client.company'
+                )
             ))
             ->add('email', 'email', array(
                 'required' => true,
-                'label' => 'backend.client.email'
+                'label' => 'backend.client.email',
+                'attr' => array(
+                    'ng-model' => 'client.email'
+                )
             ))
             ->add('hotel', 'entity', array(
                 'required' => true,
@@ -35,7 +44,10 @@ class ClientType extends AbstractType
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('h')
                         ->orderBy('h.position', 'ASC');
-                }
+                },
+                'attr' => array(
+                    'ng-model' => 'client.hotel'
+                )
             ))
             ->add('classRoom', 'entity', array(
                 'required' => true,
@@ -44,7 +56,10 @@ class ClientType extends AbstractType
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('c')
                         ->orderBy('c.position', 'ASC');
-                }
+                },
+                'attr' => array(
+                    'ng-model' => 'client.classRoom'
+                )
             ))
             ->add('meet', 'choice', array(
                 'required' => true,
@@ -52,6 +67,9 @@ class ClientType extends AbstractType
                 'choices' => array(
                     0 => 'Нет',
                     1 => 'Да'
+                ),
+                'attr' => array(
+                    'ng-model' => 'client.meet'
                 )
             ))
             ->add('transport', 'choice', array(
@@ -60,20 +78,40 @@ class ClientType extends AbstractType
                 'choices' => array(
                     0 => 'Самолет',
                     1 => 'Поезд'
+                ),
+                'attr' => array(
+                    'ng-model' => 'client.transport',
+                )
+            ))
+            ->add('time', 'datetime', array(
+                'required' => true,
+                'label' => 'backend.client.time',
+                'attr' => array(
+                    'ng-model' => 'client.time'
                 )
             ))
             ->add('station', 'entity', array(
-                'required' => true,
+                'required' => false,
                 'class' => 'Site\MainBundle\Entity\Stations',
                 'label' => 'backend.client.station',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('s')
                         ->orderBy('s.position', 'ASC');
-                }
+                },
+                'attr' => array(
+                    'ng-model' => 'client.station',
+                    'ng-show' => 'client.transport == 1'
+                ),
+                'label_attr' => array(
+                    'ng-show' => 'client.transport == 1'
+                )
             ))
             ->add('friends', 'textarea', array(
                 'required' => true,
-                'label' => 'backend.client.friends'
+                'label' => 'backend.client.friends',
+                'attr' => array(
+                    'ng-model' => 'client.friends'
+                )
             ))
         ;
     }

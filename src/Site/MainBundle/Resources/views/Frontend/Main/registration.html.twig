@@ -1,0 +1,80 @@
+{% extends 'SiteMainBundle:Frontend:layout.html.twig' %}
+
+{% block html %}ng-app="registration{{ register_date }}"{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/sitemain/frontend/js/angular.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/sitemain/frontend/js/registration'~register_date~'.js') }}"></script>
+{% endblock %}
+
+{% block text %}
+    <div class="row">
+        <div class="col-md-12 conf">
+            {{ page.text|raw }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block form %}
+    <div class="col-sm-7 col-md-4 form-body" ng-controller="RegistrationController">
+    {{ form_start(form, { attr: {novalidate: 'novalidate'} }) }}
+    {{ form_row(form.fio) }}
+    {{ form_row(form.company) }}
+    {{ form_row(form.email) }}
+	<span class="text-block-form"><h4 class="text-center">Проживание</h4>
+	<p class="text-center">Для удобного размещение гостей конференции <br> мы забронировали номера в удобно<br> расположенных отелях</p></span>
+    {{ form_row(form.hotel) }}
+    {{ form_row(form.classRoom) }}
+    {% if register_date == '14' %}
+    {{ form_row(form.meet) }}
+    <div ng-show="client.meet == 1">
+        {{ form_row(form.transport) }}
+        {{ form_row(form.time) }}
+        {{ form_row(form.station) }}
+    {% endif %}
+        {% if register_date == '15' %}
+            {{ form_row(form.friends) }}
+        {% endif %}
+    {% if register_date == '14' %}
+    </div>
+    {% endif %}
+    {{ form_end(form) }}
+        <table class="table table-foot">
+            <thead>
+                <tr>
+                    <th><a href="{{ path('frontend_page_index', {register_date: register_date,slug: 'prozhivaniie'}) }}"><img src="{{ asset('bundles/sitemain/frontend/img/home.png') }}" alt=""></a></th>
+                    <th><a href="{{ path('frontend_page_index', {register_date: register_date,slug: 'transfier'}) }}"><img src="{{ asset('bundles/sitemain/frontend/img/transport.png') }}" alt=""></a></th>
+                    <th><a href="mailto:{{ email }}"><img src="{{ asset('bundles/sitemain/frontend/img/mail4.png') }}" alt=""></a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="{{ path('frontend_page_index', {register_date: register_date, slug: 'prozhivaniie'}) }}"><p>Проживание</p></a></td>
+                    <td><a href="{{ path('frontend_page_index', {register_date: register_date, slug: 'transfier'}) }}" id=""><p>Трансфер</p></a></td>
+                    <td><a href="mailto:{{ email }}"><p>Связаться с <br>координатором</p></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- правая колонка ↓ -->
+    <div class=" col-xs-12 col-sm-5 col-md-4  pull-right">
+        <ul class="list-menu-head list-right pull-right right-sidebar">
+            {% set link = path('frontend_register_index', {register_date: register_date}) %}
+            <li class="menu1{% if link == current_path %} current{% endif %}"><a href="{{ link }}"><img src="{{ asset('bundles/sitemain/frontend/img/port.png') }}" alt="" class="item1"><img src="{{ asset('bundles/sitemain/frontend/img/portH.png') }}" alt="" class="item1 img-hide">Регистрация</a></li>
+            {% set link = path('frontend_page_index', {register_date: register_date, slug: 'miesto-proviedieniia'}) %}
+            <li class="menu2{% if link == current_path %} current{% endif %}"><a href="{{ link }}"><img src="{{ asset('bundles/sitemain/frontend/img/location.png') }}" alt=""><img src="{{ asset('bundles/sitemain/frontend/img/locationH.png') }}" class="img-hide" alt="">Место проведения</a></li>
+            {% set link = path('frontend_page_index', {register_date: register_date, slug: 'proghramma'~register_date }) %}
+            <li class="menu3{% if link == current_path %} current{% endif %}"><a href="{{ link }}"><img src="{{ asset('bundles/sitemain/frontend/img/programm.png') }}" alt=""><img src="{{ asset('bundles/sitemain/frontend/img/programmH.png') }}" class="img-hide" alt="">Программа</a></li>
+            <li class="menu4{% if link == current_path %} current{% endif %}"><a href={% if buklet.fileLink|length > 0 %}"{{ buklet.webPath }}" download="" {% else %}"{{ path('frontend_page_index', {register_date: register_date, slug: 'bukliet-uchastnika'}) }}"{% endif %}><img src="{{ asset('bundles/sitemain/frontend/img/buklet.png') }}" alt=""><img src="{{ asset('bundles/sitemain/frontend/img/bukletH.png') }}" class="img-hide" alt="">Буклет участника</a></li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}

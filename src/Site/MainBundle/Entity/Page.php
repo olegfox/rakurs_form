@@ -4,6 +4,8 @@ namespace Site\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Page
@@ -69,6 +71,16 @@ class Page
      * @ORM\Column(name="position", type="integer", nullable=true)
      */
     private $position;
+
+    /**
+     * @ORM\Column(type="string", length=512, nullable=true)
+     */
+    private $fileLink;
+
+    /**
+     * @Assert\File()
+     */
+    private $file;
 
 
     /**
@@ -240,5 +252,97 @@ class Page
     public function getPosition()
     {
         return $this->position;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->fileLink
+            ? null
+            : $this->getUploadRootDir().'/'.$this->fileLink;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->fileLink
+            ? null
+            : $this->getUploadDir().'/'.$this->fileLink;
+    }
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../../../'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        return 'uploads/page';
+    }
+
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+
+        $this->upload();
+    }
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    public function upload()
+    {
+        if (null === $this->getFile()) {
+            return;
+        }
+
+        if (isset($this->fileLink)) {
+            if(file_exists($this->getUploadDir().'/'.$this->fileLink)){
+                unlink($this->getUploadDir().'/'.$this->fileLink);
+            }
+            $this->fileLink = null;
+        }
+
+        $this->fileLink = $this->getFile()->getClientOriginalName();
+
+        $this->getFile()->move(
+            $this->getUploadDir(),
+            $this->fileLink
+        );
+
+        $this->file = null;
+    }
+
+    /**
+     * Set fileLink
+     *
+     * @param string $fileLink
+     * @return Page
+     */
+    public function setFileLink($fileLink)
+    {
+        $this->fileLink = $fileLink;
+
+        return $this;
+    }
+
+    /**
+     * Get fileLink
+     *
+     * @return string 
+     */
+    public function getFileLink()
+    {
+        return $this->fileLink;
     }
 }

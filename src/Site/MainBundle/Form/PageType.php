@@ -22,6 +22,10 @@ class PageType extends AbstractType
                     'min' => 0
                 )
             ))
+            ->add('file', 'file', array(
+                'required' => false,
+                'label' => 'backend.page.fileLink'
+            ))
             ->add('title', 'text', array(
                 'required' => true,
                 'label' => 'backend.page.title'

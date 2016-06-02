@@ -2,10 +2,6 @@ frontend_homepage:
     path:     /
     defaults: { _controller: "SiteMainBundle:Frontend/Main:index" }
 
-frontend_client:
-    resource: "@SiteMainBundle/Resources/config/routing/frontend/client.yml"
-    prefix:   /
-
-frontend_page_index:
-    path:     /{slug}
-    defaults: { _controller: "SiteMainBundle:Frontend/Page:index" }
+frontend_register:
+    resource: "@SiteMainBundle/Resources/config/routing/frontend/register.yml"
+    prefix:   /register

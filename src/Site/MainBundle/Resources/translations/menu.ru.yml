@@ -26,6 +26,7 @@ backend:
         position: Позиция в меню
         parent: Родитель
         slug: url
+        fileLink: Файл
         not_found: Страница не существует
         validation:
             title: Вы не ввели заголовок!

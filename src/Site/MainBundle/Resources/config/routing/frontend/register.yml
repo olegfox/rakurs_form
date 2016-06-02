@@ -1,0 +1,12 @@
+frontend_register_index:
+    path:     /{register_date}
+    defaults: { _controller: "SiteMainBundle:Frontend/Auth:registration" }
+
+frontend_client_create:
+    path:     /{register_date}/create
+    defaults: { _controller: "SiteMainBundle:Frontend/Client:create" }
+    requirements: { _method: post }
+
+frontend_page_index:
+    path:     /{register_date}/{slug}
+    defaults: { _controller: "SiteMainBundle:Frontend/Page:index" }

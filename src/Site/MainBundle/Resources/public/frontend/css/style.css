@@ -16,7 +16,22 @@ ul.list-menu-head{list-style:none;}
 ul.list-menu-head li{display:inline-block;margin:0 13px;}
 ul.list-menu-head li a{text-align: center; color:#ccc;}
 ul.list-menu-head li img{margin:auto; display:block;margin-bottom:2%;}
+ul.list-menu-head li img.img-hide {display: none;}
 
+ul.list-menu-head li:hover a,
+ul.list-menu-head li.current a{
+    color: #0089d1;
+}
+
+ul.list-menu-head li:hover img,
+ul.list-menu-head li.current img{
+    display: none;
+}
+
+ul.list-menu-head li:hover img.img-hide,
+ul.list-menu-head li.current img.img-hide{
+    display: block;
+}
 
 
 /*****************HEAD*****************/

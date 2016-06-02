@@ -13,6 +13,7 @@ class PageController extends Controller
         $repository = $this->getDoctrine()->getRepository('SiteMainBundle:Page');
 
         $page = $repository->findOneBySlug($slug);
+        $buklet = $repository->findOneBySlug('bukliet-uchastnika');
 
         if (!$page)
         {
@@ -22,8 +23,17 @@ class PageController extends Controller
         }
 
         $params = array(
-            "page" => $page
+            "page" => $page,
+            "buklet" => $buklet
         );
+        
+        if (in_array($slug, array("prozhivaniie", "transfier", "sviazat-sia-s-koordinatorom"))) {
+
+            $params = array_merge($params, array(
+                'withoutMenu' => true
+            ));
+
+        }
 
         return $this->render('SiteMainBundle:Frontend/Page:index.html.twig', $params);
     }
