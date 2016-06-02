@@ -28,7 +28,7 @@ class StationsController extends Controller
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $entities,
-            $this->get('request')->query->get('stations', 1) /*stations number*/,
+            $this->get('request')->query->get('page', 1) /*stations number*/,
             10/*limit per stations*/
         );
 

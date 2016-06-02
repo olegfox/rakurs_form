@@ -114,7 +114,7 @@ class Client
      *
      * @var string
      *
-     * @ORM\Column(name="friends", type="string", length=1024, nullable=false)
+     * @ORM\Column(name="friends", type="string", length=1024, nullable=true)
      */
     private $friends;
 

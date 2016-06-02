@@ -1,15 +1,16 @@
 {% extends 'SiteMainBundle:Frontend:layout.html.twig' %}
 
-{% block html %}ng-app="registration{{ register_date }}"{% endblock %}
+{% block html %}ng-app="registration"{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
+    <script type="text/javascript">
+        window.timer_register = '{{ timer }}';
+    </script>
 {% endblock %}
 
 {% block head %}
     {{ parent() }}
-    <script type="text/javascript" src="{{ asset('bundles/sitemain/frontend/js/angular.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/sitemain/frontend/js/registration'~register_date~'.js') }}"></script>
 {% endblock %}
 
 {% block text %}
@@ -22,7 +23,7 @@
 
 {% block form %}
     <div class="col-sm-7 col-md-4 form-body" ng-controller="RegistrationController">
-    {{ form_start(form, { attr: {novalidate: 'novalidate'} }) }}
+    {{ form_start(form, { attr: {novalidate: 'novalidate', 'ng-submit': 'submit()', 'onsubmit': 'return false;'} }) }}
     {{ form_row(form.fio) }}
     {{ form_row(form.company) }}
     {{ form_row(form.email) }}
@@ -72,9 +73,17 @@
             <li class="menu3{% if link == current_path %} current{% endif %}"><a href="{{ link }}"><img src="{{ asset('bundles/sitemain/frontend/img/programm.png') }}" alt=""><img src="{{ asset('bundles/sitemain/frontend/img/programmH.png') }}" class="img-hide" alt="">Программа</a></li>
             <li class="menu4{% if link == current_path %} current{% endif %}"><a href={% if buklet.fileLink|length > 0 %}"{{ buklet.webPath }}" download="" {% else %}"{{ path('frontend_page_index', {register_date: register_date, slug: 'bukliet-uchastnika'}) }}"{% endif %}><img src="{{ asset('bundles/sitemain/frontend/img/buklet.png') }}" alt=""><img src="{{ asset('bundles/sitemain/frontend/img/bukletH.png') }}" class="img-hide" alt="">Буклет участника</a></li>
         </ul>
+        <div class="wrap-timer wrap-timer-{{ register_date }}">
+            <div class="head1">До конференции осталось</div>
+            <div class="timer" id="timer"></div>
+        </div>
     </div>
 {% endblock %}
 
 {% block javascripts %}
-
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/sitemain/frontend/js/angular.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/sitemain/frontend/js/jquery.simplemodal.1.4.4.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/sitemain/frontend/js/jquery.countdown-2.1.0/jquery.countdown.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/sitemain/frontend/js/registration.js') }}"></script>
 {% endblock %}

@@ -28,7 +28,7 @@ class HotelController extends Controller
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $entities,
-            $this->get('request')->query->get('hotel', 1) /*hotel number*/,
+            $this->get('request')->query->get('page', 1) /*hotel number*/,
             10/*limit per hotel*/
         );
 

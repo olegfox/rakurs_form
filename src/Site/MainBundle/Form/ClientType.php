@@ -20,21 +20,24 @@ class ClientType extends AbstractType
                 'required' => true,
                 'label' => 'backend.client.fio',
                 'attr' => array(
-                    'ng-model' => 'client.fio'
+                    'ng-model' => 'client.fio',
+                    'ng-minlength' => '3'
                 )
             ))
             ->add('company', 'text', array(
                 'required' => true,
                 'label' => 'backend.client.company',
                 'attr' => array(
-                    'ng-model' => 'client.company'
+                    'ng-model' => 'client.company',
+                    'ng-minlength' => '3'
                 )
             ))
             ->add('email', 'email', array(
                 'required' => true,
                 'label' => 'backend.client.email',
                 'attr' => array(
-                    'ng-model' => 'client.email'
+                    'ng-model' => 'client.email',
+                    'ng-minlength' => '5'
                 )
             ))
             ->add('hotel', 'entity', array(
@@ -87,9 +90,10 @@ class ClientType extends AbstractType
                 ),
                 'empty_value' => 'backend.client.transport.empty_value',
             ))
-            ->add('time', 'datetime', array(
-                'required' => true,
+            ->add('time', 'time', array(
+                'required' => false,
                 'label' => 'backend.client.time',
+                'widget' => 'single_text',
                 'attr' => array(
                     'ng-model' => 'client.time'
                 )
@@ -111,7 +115,7 @@ class ClientType extends AbstractType
                 )
             ))
             ->add('friends', 'textarea', array(
-                'required' => true,
+                'required' => false,
                 'label' => 'backend.client.friends',
                 'attr' => array(
                     'ng-model' => 'client.friends'

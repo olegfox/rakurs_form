@@ -9,6 +9,7 @@
             <tr>
                 <th>{{ 'backend.client.fio'|trans({}, 'menu') }}</th>
                 <th>{{ 'backend.client.email'|trans({}, 'menu') }}</th>
+                <th>{{ 'backend.client.registerDate'|trans({}, 'menu') }}</th>
                 <th>{{ 'backend.actions'|trans({}, 'menu') }}</th>
             </tr>
             </thead>
@@ -17,6 +18,7 @@
                 <tr>
                     <td><a href="{{ path('backend_client_show', { 'id': entity.id }) }}">{{ entity.fio }}</a></td>
                     <td>{{ entity.email }}</td>
+                    <td>{% if entity.registerDate == false %}Регистрация14{% else %}Регистрация15{% endif %}</td>
                     <td>
                         <ul class="nav nav-pills">
                             <li>

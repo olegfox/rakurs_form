@@ -28,7 +28,7 @@ class ClientController extends Controller
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $entities,
-            $this->get('request')->query->get('client', 1) /*client number*/,
+            $this->get('request')->query->get('page', 1) /*client number*/,
             10/*limit per client*/
         );
 

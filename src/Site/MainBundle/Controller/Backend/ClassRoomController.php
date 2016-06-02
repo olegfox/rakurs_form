@@ -28,7 +28,7 @@ class ClassRoomController extends Controller
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $entities,
-            $this->get('request')->query->get('class_room', 1) /*class_room number*/,
+            $this->get('request')->query->get('page', 1) /*class_room number*/,
             10/*limit per class_room*/
         );
 
