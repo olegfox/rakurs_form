@@ -31,7 +31,8 @@ class AuthController extends Controller
         $form->add('submit', 'submit', array(
             'label' => 'регистрация',
             'attr' => array(
-                'class' => 'btn btn-default btn-lg'         
+                'class' => 'btn btn-default btn-lg',
+                'ng-disabled' => '!site_mainbundle_client.$valid'         
             )
         ));
 

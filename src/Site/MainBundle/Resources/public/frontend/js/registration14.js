@@ -9,6 +9,6 @@ angular.
         $interpolateProvider.startSymbol("{[{").endSymbol("}]}");
     })
     .controller("RegistrationController", function ($scope, $http) {
-        
+
     });
 

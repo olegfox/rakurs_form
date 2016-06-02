@@ -14,7 +14,7 @@ img{max-width: 100%;height: auto;}
 .list-menu-head{ position: relative;}
 ul.list-menu-head{list-style:none;}
 ul.list-menu-head li{display:inline-block;margin:0 13px;}
-ul.list-menu-head li a{text-align: center; color:#ccc;}
+ul.list-menu-head li a{text-align: center; color:#ccc;text-decoration: none;}
 ul.list-menu-head li img{margin:auto; display:block;margin-bottom:2%;}
 ul.list-menu-head li img.img-hide {display: none;}
 
@@ -184,5 +184,12 @@ button[type="submit"]{
     max-width: 800px;
     margin: 0 auto;
 	
+}
+
+input.ng-invalid,
+select.ng-invalid {
+
+	border: red solid 1px;
+
 }
 

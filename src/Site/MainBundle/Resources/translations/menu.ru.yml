@@ -58,9 +58,13 @@ backend:
         company: Компания
         email: Email
         hotel: Отель
+        hotel.empty_value: Список отелей
         classRoom: Класс номера
+        classRoom.empty_value: Список класса номеров
         meet: Нужно ли встретить?
+        meet.empty_value: Да / Нет
         transport: Транспорт
+        transport.empty_value: Самолет / Поезд
         station: Вокзал
         time: Время прибытия
         registerDate: День регистрации
@@ -81,7 +85,7 @@ backend:
             title: Вы не ввели название вокзала!          
 
     class_room:
-        h1_show: Класс номера
+        h1_show: Тип номера
         h1_list: Список классов
         h1_edit: Редактирование класса
         h1_create: Добавление класса

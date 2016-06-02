@@ -45,6 +45,7 @@ class ClientType extends AbstractType
                     return $er->createQueryBuilder('h')
                         ->orderBy('h.position', 'ASC');
                 },
+                'empty_value' => 'backend.client.hotel.empty_value',
                 'attr' => array(
                     'ng-model' => 'client.hotel'
                 )
@@ -57,6 +58,7 @@ class ClientType extends AbstractType
                     return $er->createQueryBuilder('c')
                         ->orderBy('c.position', 'ASC');
                 },
+                'empty_value' => 'backend.client.classRoom.empty_value',
                 'attr' => array(
                     'ng-model' => 'client.classRoom'
                 )
@@ -70,10 +72,11 @@ class ClientType extends AbstractType
                 ),
                 'attr' => array(
                     'ng-model' => 'client.meet'
-                )
+                ),
+                'empty_value' => 'backend.client.meet.empty_value',
             ))
             ->add('transport', 'choice', array(
-                'required' => true,
+                'required' => false,
                 'label' => 'backend.client.transport',
                 'choices' => array(
                     0 => 'Самолет',
@@ -81,7 +84,8 @@ class ClientType extends AbstractType
                 ),
                 'attr' => array(
                     'ng-model' => 'client.transport',
-                )
+                ),
+                'empty_value' => 'backend.client.transport.empty_value',
             ))
             ->add('time', 'datetime', array(
                 'required' => true,
