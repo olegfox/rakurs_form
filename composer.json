@@ -40,7 +40,9 @@
         "stof/doctrine-extensions-bundle": "~1.1@dev",
         "twbs/bootstrap": "3.0.*",
         "jquery/jquery":  "1.11.*",
-        "lexik/form-filter-bundle": "~3.0"
+        "lexik/form-filter-bundle": "~3.0",
+        "phpoffice/phpexcel": "1.7.9",
+        "liuggio/excelbundle": "~2.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

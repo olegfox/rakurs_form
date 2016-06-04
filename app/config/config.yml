@@ -41,7 +41,7 @@ assetic:
     filters:
         less:
             node: /usr/bin/node
-            node_paths: [/usr/lib/node_modules]
+            node_paths: ["%path_node_modules%"]
             apply_to: "\.less$"
         cssrewrite: ~
         #closure:
@@ -52,7 +52,7 @@ braincrafted_bootstrap:
     output_dir:
     assets_dir: %kernel.root_dir%/../vendor/twbs/bootstrap
     jquery_path: %kernel.root_dir%/../vendor/jquery/jquery/jquery-1.11.1.js
-    less_filter: less # "less", "lessphp", "sass" or "none"
+#    less_filter: less # "less", "lessphp", "sass" or "none"
     fonts_dir: %kernel.root_dir%/../web/fonts
     auto_configure:
         assetic: true

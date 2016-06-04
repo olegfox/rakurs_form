@@ -235,4 +235,14 @@ class ClientController extends Controller
             ->getForm()
         ;
     }
+
+    /**
+     * Экспорт в excel
+     *
+     * @return mixed
+     */
+    public function exportAction()
+    {
+        return $this->get('export.excel')->export();
+    }
 }
