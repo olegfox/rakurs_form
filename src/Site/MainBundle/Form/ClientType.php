@@ -37,7 +37,8 @@ class ClientType extends AbstractType
                 'label' => 'backend.client.email',
                 'attr' => array(
                     'ng-model' => 'client.email',
-                    'ng-minlength' => '5'
+                    'ng-minlength' => '5',
+                    'placeholder' => 'На этот адрес придёт подтверждение регистрации'
                 )
             ))
             ->add('hotel', 'entity', array(
@@ -95,7 +96,8 @@ class ClientType extends AbstractType
                 'label' => 'backend.client.time',
                 'widget' => 'single_text',
                 'attr' => array(
-                    'ng-model' => 'client.time'
+                    'ng-model' => 'client.time',
+                    'placeholder' => 'Укажите дату и время вашего прибытия для организации трансфера'
                 )
             ))
             ->add('station', 'entity', array(

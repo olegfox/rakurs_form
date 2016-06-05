@@ -20,6 +20,7 @@ class AuthController extends Controller
         $page = $repository->findOneBySlug('rieghistratsiia' . $register_date);
         $buklet = $repository->findOneBySlug('bukliet-uchastnika');
         $email = $repository_settings->findOneByKey('email');
+        $map = $repository_settings->findOneByKey('map');
         $timer = $repository_settings->findOneByKey('timer' . $register_date)->getValue();
 
         if ($email)
@@ -59,21 +60,31 @@ class AuthController extends Controller
                 $em->persist($entity);
                 $em->flush();
 
-                $swift = \Swift_Message::newInstance()
-                    ->setSubject('Ракурс')
-                    ->setFrom(array($this->container->getParameter('email_from') => "Ракурс"))
-                    ->setTo($entity->getEmail())
-                    ->setBody(
-                        $this->renderView(
-                            'SiteMainBundle:Frontend/Email:index.html.twig',
-                            array(
-                                'form' => $entity
-                            )
-                        )
-                        , 'text/html'
-                    );
+                $emails_to = array(
+                    $entity->getEmail()
+                );
 
-                $this->get('mailer')->send($swift);
+                $emails_to = array_merge($emails_to, explode(",", $this->container->getParameter('email_to')));
+
+                foreach($emails_to as $email) {
+
+                    $swift = \Swift_Message::newInstance()
+                        ->setSubject('Ракурс')
+                        ->setFrom(array($this->container->getParameter('email_from') => "Ракурс"))
+                        ->setTo($email)
+                        ->setBody(
+                            $this->renderView(
+                                'SiteMainBundle:Frontend/Email:index.html.twig',
+                                array(
+                                    'form' => $entity
+                                )
+                            )
+                            , 'text/html'
+                        );
+
+                    $this->get('mailer')->send($swift);
+
+                }
 
                 if ($request->get('xhr'))
                 {
@@ -95,7 +106,8 @@ class AuthController extends Controller
             'page' => $page,
             'buklet' => $buklet,
             'email' => $email,
-            'timer' => $timer
+            'timer' => $timer,
+            'map' => $map
         ));
     }
 

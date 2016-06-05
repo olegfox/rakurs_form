@@ -58,9 +58,9 @@ backend:
         company: Компания
         email: Email
         hotel: Отель
-        hotel.empty_value: Список отелей
+        hotel.empty_value: Пожалуйста, выберите один из рекомендованных отелей
         classRoom: Класс номера
-        classRoom.empty_value: Список класса номеров
+        classRoom.empty_value: Пожалуйста, выберите тип номера
         meet: Нужно ли встретить?
         meet.empty_value: Да / Нет
         transport: Транспорт

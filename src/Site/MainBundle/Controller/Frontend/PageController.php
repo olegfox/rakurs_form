@@ -11,6 +11,8 @@ class PageController extends Controller
     public function indexAction($slug)
     {
         $repository = $this->getDoctrine()->getRepository('SiteMainBundle:Page');
+        $repository_settings = $this->getDoctrine()->getRepository('SiteMainBundle:Settings');
+        $map = $repository_settings->findOneByKey('map')->getValue();
 
         $page = $repository->findOneBySlug($slug);
         $buklet = $repository->findOneBySlug('bukliet-uchastnika');
@@ -24,7 +26,8 @@ class PageController extends Controller
 
         $params = array(
             "page" => $page,
-            "buklet" => $buklet
+            "buklet" => $buklet,
+            "map" => $map
         );
         
         if (in_array($slug, array("prozhivaniie", "transfier", "sviazat-sia-s-koordinatorom"))) {
