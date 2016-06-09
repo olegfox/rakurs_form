@@ -107,7 +107,7 @@ class Client
      *
      * @ORM\Column(name="registerDate", type="boolean", nullable=true)
      */
-    protected $registerDate;
+    protected $registerDate = false;
 
     /**
      * С кем из сотрудников компании «Ракурс» вы бы хотели пообщаться в ходе конференции
@@ -117,6 +117,24 @@ class Client
      * @ORM\Column(name="friends", type="string", length=1024, nullable=true)
      */
     private $friends;
+
+    /**
+     * Флаг отправки письма за 2 недели
+     *
+     * @var boolean
+     *
+     * @ORM\Column(name="flagRemember2", type="boolean", nullable=true)
+     */
+    protected $flagRemember2 = false;
+
+    /**
+     * Флаг отправки письма за 1 неделю
+     *
+     * @var boolean
+     *
+     * @ORM\Column(name="flagRemember", type="boolean", nullable=true)
+     */
+    protected $flagRemember = false;
 
     /**
      * Get id
@@ -379,5 +397,51 @@ class Client
     public function getFriends()
     {
         return $this->friends;
+    }
+
+    /**
+     * Set flagRemember2
+     *
+     * @param boolean $flagRemember2
+     * @return Client
+     */
+    public function setFlagRemember2($flagRemember2)
+    {
+        $this->flagRemember2 = $flagRemember2;
+
+        return $this;
+    }
+
+    /**
+     * Get flagRemember2
+     *
+     * @return boolean 
+     */
+    public function getFlagRemember2()
+    {
+        return $this->flagRemember2;
+    }
+
+    /**
+     * Set flagRemember
+     *
+     * @param boolean $flagRemember
+     * @return Client
+     */
+    public function setFlagRemember($flagRemember)
+    {
+        $this->flagRemember = $flagRemember;
+
+        return $this;
+    }
+
+    /**
+     * Get flagRemember
+     *
+     * @return boolean 
+     */
+    public function getFlagRemember()
+    {
+        return $this->flagRemember;
     }
 }

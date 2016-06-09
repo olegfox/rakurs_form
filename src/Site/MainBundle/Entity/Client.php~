@@ -114,9 +114,27 @@ class Client
      *
      * @var string
      *
-     * @ORM\Column(name="friends", type="string", length=1024, nullable=false)
+     * @ORM\Column(name="friends", type="string", length=1024, nullable=true)
      */
     private $friends;
+
+    /**
+     * Флаг отправки письма за 2 недели
+     *
+     * @var boolean
+     *
+     * @ORM\Column(name="flagRemember2", type="boolean", nullable=true)
+     */
+    protected $flagRemember2;
+
+    /**
+     * Флаг отправки письма за 1 неделю
+     *
+     * @var boolean
+     *
+     * @ORM\Column(name="flagRemember", type="boolean", nullable=true)
+     */
+    protected $flagRemember;
 
     /**
      * Get id
@@ -356,5 +374,28 @@ class Client
     public function getStation()
     {
         return $this->station;
+    }
+
+    /**
+     * Set friends
+     *
+     * @param string $friends
+     * @return Client
+     */
+    public function setFriends($friends)
+    {
+        $this->friends = $friends;
+
+        return $this;
+    }
+
+    /**
+     * Get friends
+     *
+     * @return string 
+     */
+    public function getFriends()
+    {
+        return $this->friends;
     }
 }

@@ -51,7 +51,9 @@ class ClientService
             'Транспорт',
             'Время прибытия',
             'Вокзал',
-            'С кем из сотрудников компании «Ракурс» вы бы хотели пообщаться в ходе конференции?'
+            'С кем из сотрудников компании «Ракурс» вы бы хотели пообщаться в ходе конференции?',
+            'Напоминание за 2 недели',
+            'Напоминание за 1 неделю'
         );
 
         foreach ($headers as $header)
@@ -76,7 +78,9 @@ class ClientService
                 false == $client->getTransport() ? 'Самолет' : 'Поезд',
                 false == is_object($client->getTime()) ? '' : $client->getTime()->format('H:i'),
                 true == is_object($client->getStation()) ? $client->getStation() : '',
-                $client->getFriends()
+                $client->getFriends(),
+                true == $client->getFlagRemember2() ? 'Отправлено' : 'не отправлено',
+                true == $client->getFlagRemember() ? 'Отправлено' : 'не отправлено'
             );
 
             foreach($info as $inf)

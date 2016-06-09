@@ -90,8 +90,6 @@ class AuthController extends Controller
 
                     $this->get('mailer')->send($swift);
 
-                    var_dump($email);   
-
                 }
 
                 if ($request->get('xhr'))
@@ -131,5 +129,87 @@ class AuthController extends Controller
         $form->add('submit', 'submit', array('label' => 'backend.create'));
 
         return $form;
+    }
+
+    public function rememberAction() {
+
+        // Функция рассылки напоминаний
+        function sendRemember($controller, $container, $day, $week = '') {
+
+            $count = 0;
+
+            $em = $controller->getDoctrine()->getManager();;
+            $repository = $controller->getDoctrine()->getRepository('SiteMainBundle:Client');
+
+            $clients = $repository->findBy(array(
+                'flagRemember' . $week => false,
+                'registerDate' => $day == '14' ? false : true
+            ));
+
+            foreach($clients as $client) {
+                if ($count > 20) {
+
+                    break;
+
+                }
+
+                $swift = \Swift_Message::newInstance()
+                    ->setSubject('Ракурс')
+                    ->setFrom(array($container->getParameter('email_from') => "Ракурс"))
+                    ->setTo($client->getEmail())
+                    ->setBody(
+                        $controller->renderView(
+                            'SiteMainBundle:Frontend/Email:remember' . $day . '.html.twig'
+                        )
+                        , 'text/html'
+                    );
+
+                $controller->get('mailer')->send($swift);
+
+                if ($week == '2') {
+                    $client->setFlagRemember2(true);
+                } else {
+                    $client->setFlagRemember(true);
+                }
+
+                $em->flush();
+
+                $count++;
+            }
+
+        }
+
+        // Получение дат старта событий из настроек
+        $repository_settings = $this->getDoctrine()->getRepository('SiteMainBundle:Settings');
+
+        $timer14 = $repository_settings->findOneByKey('timer14')->getValue();
+        $timer15 = $repository_settings->findOneByKey('timer15')->getValue();
+
+        $date14 = new \DateTime($timer14);
+        $date15 = new \DateTime($timer15);
+
+        $now = new \DateTime();
+
+        $interval14 = $now->diff($date14)->format('%a');
+        $interval15 = $now->diff($date15)->format('%a');
+
+        if (intval($interval14) == 14) {
+            sendRemember($this, $this->container, '14', '2');
+        }
+
+        if (intval($interval14) == 7) {
+            sendRemember($this, $this->container, '14');
+        }
+
+        if (intval($interval15) == 14) {
+            sendRemember($this, $this->container, '15', '2');
+        }
+
+        if (intval($interval15) == 7) {
+            sendRemember($this, $this->container, '15');
+        }
+
+        return new Response('OK');
+
     }
 }
