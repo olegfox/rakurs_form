@@ -42,7 +42,7 @@ class ClientType extends AbstractType
                 )
             ))
             ->add('hotel', 'entity', array(
-                'required' => true,
+                'required' => false,
                 'class' => 'Site\MainBundle\Entity\Hotel',
                 'label' => 'backend.client.hotel',
                 'query_builder' => function (EntityRepository $er) {
@@ -55,7 +55,7 @@ class ClientType extends AbstractType
                 )
             ))
             ->add('classRoom', 'entity', array(
-                'required' => true,
+                'required' => false,
                 'class' => 'Site\MainBundle\Entity\ClassRoom',
                 'label' => 'backend.client.classRoom',
                 'query_builder' => function (EntityRepository $er) {

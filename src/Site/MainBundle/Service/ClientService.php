@@ -70,12 +70,12 @@ class ClientService
                 $client->getFio(),
                 $client->getCompany(),
                 $client->getEmail(),
-                false == is_object($client->getHotel()) ? $client->getHotel() : '',
-                false == is_object($client->getClassRoom()) ? $client->getClassRoom() : '',
+                true == is_object($client->getHotel()) ? $client->getHotel()->getName() : '',
+                true == is_object($client->getClassRoom()) ? $client->getClassRoom()->getName() : '',
                 false == $client->getMeet() ? 'Нет' : 'Да',
                 false == $client->getTransport() ? 'Самолет' : 'Поезд',
                 false == is_object($client->getTime()) ? '' : $client->getTime()->format('H:i'),
-                false == is_object($client->getStation()) ? $client->getStation() : '',
+                true == is_object($client->getStation()) ? $client->getStation() : '',
                 $client->getFriends()
             );
 

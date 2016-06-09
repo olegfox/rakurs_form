@@ -12,9 +12,41 @@
             <td>{{ entity.fio }}</td>
         </tr>
         <tr>
+            <th>{{ 'backend.client.company'|trans({}, 'menu') }}</th>
+            <td>{{ entity.company }}</td>
+        </tr>  
+        <tr>
             <th>{{ 'backend.client.email'|trans({}, 'menu') }}</th>
             <td>{{ entity.email }}</td>
-        </tr>        
+        </tr>
+        <tr>
+            <th>{{ 'backend.client.hotel'|trans({}, 'menu') }}</th>
+            <td>{{ entity.hotel }}</td>
+        </tr>  
+        <tr>
+            <th>{{ 'backend.client.classRoom'|trans({}, 'menu') }}</th>
+            <td>{{ entity.classRoom }}</td>
+        </tr> 
+        <tr>
+            <th>{{ 'backend.client.meet'|trans({}, 'menu') }}</th>
+            <td>{% if entity.meet == 1 %}Да{% else %}Нет{% endif %}</td>
+        </tr>   
+        <tr>
+            <th>{{ 'backend.client.transport'|trans({}, 'menu') }}</th>
+            <td>{% if entity.transport == 1 %}Поезд{% else %}Самолет{% endif %}</td>
+        </tr>   
+        <tr>
+            <th>{{ 'backend.client.time'|trans({}, 'menu') }}</th>
+            <td>{% if entity.time|length > 0 %}{{ entity.time|date('H:i') }}{% endif %}</td>
+        </tr>    
+        <tr>
+            <th>{{ 'backend.client.station'|trans({}, 'menu') }}</th>
+            <td>{{ entity.station }}</td>
+        </tr> 
+        <tr>
+            <th>{{ 'backend.client.friends'|trans({}, 'menu') }}</th>
+            <td>{{ entity.friends }}</td>
+        </tr>                                                                 
         </tbody>
     </table>
 

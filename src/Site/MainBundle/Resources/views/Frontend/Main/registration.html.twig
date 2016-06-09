@@ -27,11 +27,16 @@
     {{ form_row(form.fio) }}
     {{ form_row(form.company) }}
     {{ form_row(form.email) }}
+    {% if register_date != '14' %}
 	<span class="text-block-form"><h4 class="text-center">Проживание</h4>
 	<p class="text-center">Для удобного размещение гостей конференции <br> мы забронировали номера в удобно<br> расположенных отелях</p></span>
+    {% endif %}
+    {% if register_date != '14' %}
     {{ form_row(form.hotel) }}
     {{ form_row(form.classRoom) }}
-    {% if register_date == '14' %}
+    {% endif %}
+
+    {% if register_date != '14' and register_date != '15' %}
     {{ form_row(form.meet) }}
     <div ng-show="client.meet == 1">
         {{ form_row(form.transport) }}
@@ -42,21 +47,26 @@
             {{ form_row(form.friends) }}
         {% endif %}
     {% if register_date == '14' %}
-    </div>
+    <!--</div>-->
     {% endif %}
+
     {{ form_end(form) }}
         <table class="table table-foot">
             <thead>
                 <tr>
+                    {% if register_date != '14' %}
                     <th><a href="{{ path('frontend_page_index', {register_date: register_date,slug: 'prozhivaniie'}) }}"><img src="{{ asset('bundles/sitemain/frontend/img/home.png') }}" alt=""></a></th>
                     <th><a href="{{ path('frontend_page_index', {register_date: register_date,slug: 'transfier'}) }}"><img src="{{ asset('bundles/sitemain/frontend/img/transport.png') }}" alt=""></a></th>
+                    {% endif %}
                     <th><a href="mailto:{{ email }}"><img src="{{ asset('bundles/sitemain/frontend/img/mail4.png') }}" alt=""></a></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
+                    {% if register_date != 14 %}
                     <td><a href="{{ path('frontend_page_index', {register_date: register_date, slug: 'prozhivaniie'}) }}"><p>Проживание</p></a></td>
                     <td><a href="{{ path('frontend_page_index', {register_date: register_date, slug: 'transfier'}) }}" id=""><p>Трансфер</p></a></td>
+                    {% endif %}
                     <td><a href="mailto:{{ email }}"><p>Связаться с <br>координатором</p></a></td>
                 </tr>
             </tbody>

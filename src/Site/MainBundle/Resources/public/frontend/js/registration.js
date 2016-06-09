@@ -22,6 +22,10 @@ angular.
 
             var load = $.modal("", {overlayClose: true});
 
+            var windowParams = {overlayClose: true, onClose: function() {
+                window.location.reload();
+            }};
+
             $http({
                 method: 'POST',
                 url: $form.attr('action'),
@@ -29,11 +33,11 @@ angular.
                 headers : {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function() {
                 load.close();
-                $.modal("Спасибо за регистрацию! Вы получите подтверждение регистрации на указанный электронный адрес.", {overlayClose: true});
+                $.modal("Спасибо за регистрацию! Вы получите подтверждение регистрации на указанный электронный адрес.", windowParams);
                 $form.get(0).reset();
             }, function(){
                 load.close();
-                $.modal("Ошибка отправки! Попробуйте еще раз.", {overlayClose: true});
+                $.modal("Ошибка отправки! Попробуйте еще раз.", windowParams); 
             });
 
             return false;

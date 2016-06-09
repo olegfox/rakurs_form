@@ -42,6 +42,12 @@ class AuthController extends Controller
         if ($register_date == '14')
         {
             $form->remove('friends');
+            $form->remove('hotel');
+            $form->remove('classRoom');
+            $form->remove('meet');
+            $form->remove('transport');
+            $form->remove('station');
+            $form->remove('time');
             $entity->setRegisterDate(0);
         } else {
             $form->remove('transport');
@@ -74,7 +80,7 @@ class AuthController extends Controller
                         ->setTo($email)
                         ->setBody(
                             $this->renderView(
-                                'SiteMainBundle:Frontend/Email:index.html.twig',
+                                'SiteMainBundle:Frontend/Email:index' . $register_date . '.html.twig',
                                 array(
                                     'form' => $entity
                                 )
@@ -83,6 +89,8 @@ class AuthController extends Controller
                         );
 
                     $this->get('mailer')->send($swift);
+
+                    var_dump($email);   
 
                 }
 
